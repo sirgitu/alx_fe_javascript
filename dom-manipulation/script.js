@@ -1,5 +1,7 @@
 const quotes = [
-    // ... your existing quotes
+    { text: "The only way to do great work is to love what you do.", author: "Steve Jobs", category: "Inspirational" },
+    { text: "Life is what happens to you while you're busy making other plans.", author: "John Lennon", category: "Funny" },
+    // Add more quotes here
   ];
   
   const quoteDisplay = document.getElementById("quoteDisplay");
@@ -34,7 +36,7 @@ const quotes = [
       newQuoteAuthor.value = "";
       newQuoteCategory.value = "";
   
-      // Update categories in the filter dropdown
+      // Update categories in the dropdown
       populateCategories();
     }
   }
@@ -44,7 +46,10 @@ const quotes = [
   
     categoryFilter.innerHTML = `<option value="all">All Categories</option>`;
     uniqueCategories.forEach(category => {
-      categoryFilter.innerHTML += `<option value="${category}">${category}</option>`;
+      const option = document.createElement("option");
+      option.value = category;
+      option.textContent = category;
+      categoryFilter.appendChild(option);
     });
   }
   
