@@ -17,9 +17,9 @@ const quotes = [
       const randomIndex = Math.floor(Math.random() * filteredQuotes.length);
       const randomQuote = filteredQuotes[randomIndex];
   
-      quoteDisplay.textContent = `"${randomQuote.text}" - ${randomQuote.author}`;
+      quoteDisplay.innerHTML = `"${randomQuote.text}" - ${randomQuote.author}`;
     } else {
-      quoteDisplay.textContent = "No quotes found for that category.";
+      quoteDisplay.innerHTML = "No quotes found for that category.";
     }
   }
   
