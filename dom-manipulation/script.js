@@ -61,7 +61,7 @@ function syncData() {
   const newQuoteAuthor = document.getElementById("newQuoteAuthor");
   const newQuoteCategory = document.getElementById("newQuoteCategory");
   
-  function showRandomQuote(category) {
+  async function showRandomQuote(category) {
     const filteredQuotes = quotes.filter(quote => quote.category === category);
     if (filteredQuotes.length > 0) {
       const randomIndex = Math.floor(Math.random() * filteredQuotes.length);
@@ -87,15 +87,17 @@ function syncData() {
     }
   }
   
-  function fetchQuotesFromServer() {
-    fetch('https://jsonplaceholder.typicode.com/posts') // Replace with your actual server URL
-      .then(response => response.json())
-      .then(serverQuotes => {
-        const mergedQuotes = mergeQuotes(quotes, serverQuotes);
-        localStorage.setItem('quotes', JSON.stringify(mergedQuotes));
-        showRandomQuote(categoryFilter.value);
-      })
-      .catch(error => console.error('Error fetching data:', error));
+  async function fetchQuotesFromServer() {
+    try {
+      const response = await fetch('https://jsonplaceholder.typicode.com/posts'); // Replace with your actual server URL
+      const serverQuotes = await response.json();
+  
+      const mergedQuotes = mergeQuotes(quotes, serverQuotes);
+      localStorage.setItem('quotes', JSON.stringify(mergedQuotes));
+      showRandomQuote(categoryFilter.value);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
   }
   
   function mergeQuotes(localQuotes, serverQuotes) {
