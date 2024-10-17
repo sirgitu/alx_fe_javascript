@@ -89,21 +89,24 @@ function syncData() {
   
   async function fetchQuotesFromServer() {
     try {
-      const response = await fetch('https://jsonplaceholder.typicode.com/posts'); // Replace with your actual server URL
-      const serverQuotes = await response.json();
+      const response = await fetch('https://jsonplaceholder.typicode.com/posts', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          title: 'New Quote',
+          body: `${newQuoteText.value} - ${newQuoteAuthor.value}`,
+          userId: 1 // Replace with your desired user ID
+        })
+      });
   
-      const mergedQuotes = mergeQuotes(quotes, serverQuotes);
-      localStorage.setItem('quotes', JSON.stringify(mergedQuotes));
-      showRandomQuote(categoryFilter.value);
+      const serverQuote = await response.json();
+      quotes.push({ text: serverQuote.body, author: serverQuote.title, category: 'Custom' });
+      showRandomQuote('Custom');
     } catch (error) {
       console.error('Error fetching data:', error);
     }
-  }
-  
-  function mergeQuotes(localQuotes, serverQuotes) {
-    // Implement your conflict resolution logic here
-    // For simplicity, prioritize server quotes
-    return serverQuotes;
   }
   
   // ... (rest of your code)
