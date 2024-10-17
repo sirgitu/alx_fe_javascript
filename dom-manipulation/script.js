@@ -112,7 +112,9 @@ function syncData() {
   }
   
   function syncQuotes() {
-    fetchQuotesFromServer();
+    fetchQuotesFromServer().then(() => {
+      alert('Quotes synced with server!');
+    });
   }
   
   // ... (rest of your code)
