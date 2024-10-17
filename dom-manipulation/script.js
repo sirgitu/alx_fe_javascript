@@ -6,7 +6,21 @@ const quotes = [
   
   const quoteDisplay = document.getElementById("quoteDisplay");
   const newQuoteButton = document.getElementById("newQuote");
+  const addQuoteForm = document.createElement("form");
+  addQuoteForm.innerHTML = `
+    <input type="text" id="newQuoteText" placeholder="Enter the quote">
+    <input type="text" id="newQuoteAuthor" placeholder="Enter the author">
+    <select id="newQuoteCategory">
+      <option value="Inspirational">Inspirational</option>
+      <option value="Funny">Funny</option>
+      <option value="Motivational">Motivational</option>
+    </select>
+    <button type="submit">Add Quote</button>
+  `;
+  document.body.appendChild(addQuoteForm);
+  
   const newQuoteText = document.getElementById("newQuoteText");
+  const newQuoteAuthor = document.getElementById("newQuoteAuthor");
   const newQuoteCategory = document.getElementById("newQuoteCategory");
   
   function showRandomQuote(category) {
@@ -23,18 +37,20 @@ const quotes = [
   
   function addQuote() {
     const quoteText = newQuoteText.value;
+    const quoteAuthor = newQuoteAuthor.value;
     const quoteCategory = newQuoteCategory.value;
   
-    if (quoteText && quoteCategory) {
-      quotes.push({ text: quoteText, category: quoteCategory });
+    if (quoteText && quoteAuthor && quoteCategory) {
+      quotes.push({ text: quoteText, author: quoteAuthor, category: quoteCategory });
       showRandomQuote(quoteCategory);
       newQuoteText.value = "";
+      newQuoteAuthor.value = "";
       newQuoteCategory.value = "";
     }
   }
   
   newQuoteButton.addEventListener("click", showRandomQuote);
-  document.querySelector("form").addEventListener("submit", (event) => {
+  addQuoteForm.addEventListener("submit", (event) => {
     event.preventDefault();
     addQuote();
   });
