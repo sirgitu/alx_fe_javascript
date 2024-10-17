@@ -106,3 +106,9 @@ const lastViewedQuote = getLastViewedQuote();
 if (lastViewedQuote) {
   quoteDisplay.innerHTML = lastViewedQuote;
 }
+
+// ... (rest of your JavaScript code)
+
+// Add the export button and its event listener
+const exportQuotesButton = document.getElementById("exportQuotes");
+exportQuotesButton.addEventListener("click", exportQuotesToJson);
