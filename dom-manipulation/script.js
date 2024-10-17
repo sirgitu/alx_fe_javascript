@@ -84,6 +84,8 @@ function syncData() {
       newQuoteText.value = "";
       newQuoteAuthor.value = "";
       newQuoteCategory.value = "";
+  
+      syncQuotes(); // Sync quotes to the server
     }
   }
   
@@ -109,6 +111,10 @@ function syncData() {
     }
   }
   
+  function syncQuotes() {
+    fetchQuotesFromServer();
+  }
+  
   // ... (rest of your code)
   
-  setInterval(fetchQuotesFromServer, 5000); // Fetch quotes from server every 5 seconds
+  setInterval(syncQuotes, 5000); // Sync quotes to the server every 5 seconds
