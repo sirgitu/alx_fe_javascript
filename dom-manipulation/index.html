@@ -30,3 +30,28 @@
     <script src="script.js"></script>
 </body>
 </html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Quote Generator</title>
+</head>
+<body>
+    <h1>Dynamic Quote Generator</h1>
+    <div id="quoteDisplay"></div>
+    <select id="categoryFilter" onchange="filterQuotes()">
+        <option value="all">All Categories</option>
+    </select>
+    <button id="newQuote">Show New Quote</button>
+    <div id="addQuoteForm">
+        <input type="text" id="newQuoteText" placeholder="Enter the quote">
+        <input type="text" id="newQuoteAuthor" placeholder="Enter the author">
+        <select id="newQuoteCategory">
+            </select>
+        <button type="submit">Add Quote</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
